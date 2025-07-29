@@ -121,7 +121,7 @@ async def create_street(street: schemas.Street, db: Session = Depends(get_db)) -
         return PlainTextResponse(("ID of the created object: " + str(street_id)), status_code=200)
 
 
-@app.get('/city//street/', response_model=List[schemas.Street])
+@app.get('/city//street/', response_model=List[schemas.StreetGet])
 async def get_all_streets_of_the_city(city_id: int, db: Session = Depends(get_db)) -> Any:
     """
         # Получение всех улиц города
@@ -147,8 +147,13 @@ async def get_all_streets_of_the_city(city_id: int, db: Session = Depends(get_db
 
     else:
         get_streets_query = text("""
-            SELECT * FROM streets
-            WHERE city_id = %s;
+            SELECT 
+            streets.id as "id",
+            streets.name as "name",
+            cities.name as "city"
+            FROM streets, cities
+            WHERE streets.city_id = cities.id
+            AND streets.city_id = %s;
         """ % (city_id, ))
         response_data = db.execute(get_streets_query)
 

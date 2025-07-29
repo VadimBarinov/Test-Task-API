@@ -1,7 +1,7 @@
 DATABASE = {
     'NAME': 'mediasoft_shops',
-    'USER': 'mediasoft',
+    'USER': 'postgres',
     'PASSWORD': 'qwerty1234',
-    'HOST': 'localhost',
+    'HOST': 'db',
     'PORT': '5432',
 }

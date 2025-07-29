@@ -31,3 +31,9 @@ class Street(BaseModel):
     id: int
     name: str
     city_id: int
+  
+    
+class StreetGet(BaseModel):
+    id: int
+    name: str
+    city: str

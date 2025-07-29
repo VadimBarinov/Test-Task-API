@@ -1,6 +1,4 @@
-CREATE ROLE mediasoft WITH LOGIN PASSWORD 'qwerty1234';
-
-CREATE DATABASE mediasoft_shops OWNER mediasoft;
+CREATE DATABASE mediasoft_shops;
 
 \c mediasoft_shops;
 
@@ -27,6 +25,3 @@ CREATE TABLE IF NOT EXISTS shops (
     FOREIGN KEY (city_id) REFERENCES cities (id),
     FOREIGN KEY (street_id) REFERENCES streets (id)
 );
-
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mediasoft;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO mediasoft;
