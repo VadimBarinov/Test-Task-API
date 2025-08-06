@@ -1,5 +1,3 @@
-CREATE DATABASE mediasoft_shops;
-
 \c mediasoft_shops;
 
 CREATE TABLE IF NOT EXISTS cities (
@@ -19,7 +17,7 @@ CREATE TABLE IF NOT EXISTS shops (
     name VARCHAR(255) NOT NULL,
     city_id INTEGER NOT NULL,
     street_id INTEGER NOT NULL,
-    house INTEGER NOT NULL,
+    house VARCHAR(255) NOT NULL,
     opening_time TIME NOT NULL,
     closing_time TIME NOT NULL,
     FOREIGN KEY (city_id) REFERENCES cities (id),
