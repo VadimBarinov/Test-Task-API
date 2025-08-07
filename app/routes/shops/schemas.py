@@ -29,7 +29,7 @@ class SShopAdd(BaseModel):
     @field_validator("house")
     @classmethod
     def house_validator(cls, values: str) -> str:
-        if not re.match(r"^[0-9]{1,10}[A-Za-zА-Яа-я]$", values):
+        if not re.match(r"^[0-9]{1,10}[A-Za-zА-Яа-я]?$", values):
             raise HTTPException(detail="Номер дома должен быть в формате 'НОМЕРбуква'", status_code=400)
         return values
 
