@@ -37,9 +37,9 @@ async def init_db(session: AsyncSession) -> None:
             ('Продукты', 2, 2, '13', '08:00:00', '22:00:00');
     """)
 
-    result_cities = await session.execute(add_cities_query)
-    result_streets = await session.execute(add_streets_query)
-    result_shops = await session.execute(add_shops_query)
+    await session.execute(add_cities_query)
+    await session.execute(add_streets_query)
+    await session.execute(add_shops_query)
 
     try:
         await session.commit()
