@@ -371,34 +371,30 @@ Response body:
 2. Склонировать данный репозиторий
 
 ```bash
-    git clone https://github.com/VadimBarinov/Test-Task-API.git
+git clone https://github.com/VadimBarinov/Test-Task-API.git
 ```
 
 3. Перейти в директорию с проектом
 
 ```bash
-    cd Test-Task-API
+cd Test-Task-API
 ```
 
 4. Запустить приложение
 
 ```bash
-   docker-compose up
+docker-compose up
 ```
 
-#### После запуска приложения будут созданы необходимые таблицы:
-
-```bash
-    ./db/init_script.sql
-```
+#### После запуска приложения будут созданы необходимые таблицы: `./db/init_script.sql`
 
 #### Для доступа к базе данных используются следующие параметры:
 
 - Database : mediasoft_shops
-- User : postgres
+- User : admin
 - Password : qwerty1234
-- Host : db
-- Port : 5432
+- Host : localhost
+- Port : 5433
 
 ---
 
@@ -407,7 +403,7 @@ Response body:
 После выполнения подготовительных действий проект будет доступен по адресу
 
 ```bash
-    http://localhost:8080/
+http://localhost:8080/
 ```
 
 Проект также будет доступен по внутреннему _ip_ адресу вашего компьютера
@@ -416,10 +412,10 @@ Response body:
 
 ## Swagger UI
 
-Swagger UI будет доступен по адресу:
+Документация (Swagger UI) будет доступна по адресу:
 
 ```bash
-    http://localhost:8080/docs
+http://localhost:8080/docs
 ```
 
 Также доступ будет по внутреннему _ip_ адресу
