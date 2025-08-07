@@ -1,3 +1,4 @@
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql import text
 
@@ -7,6 +8,7 @@ from app.routes.cities.dao import CityDAO
 
 class StreetDAO(BaseDAO):
     __tablename__ = "streets"
+
 
     @classmethod
     async def get_streets_in_city(cls, session: AsyncSession, city_id: int):
@@ -35,3 +37,19 @@ class StreetDAO(BaseDAO):
             streets_result.append(street_dict)
 
         return streets_result
+
+
+    @classmethod
+    async def add_street(cls, session: AsyncSession, **street_data):
+        query = text("""
+            INSERT INTO "%s" (name, city_id) VALUES (:name, :city_id) RETURNING id;
+        """ % (cls.__tablename__ ,)).bindparams(**street_data)
+        result = await session.execute(query)
+
+        try:
+            await session.commit()
+        except SQLAlchemyError as e:
+            await session.rollback()
+            raise e
+
+        return result.scalar()
