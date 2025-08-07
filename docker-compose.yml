@@ -1,4 +1,22 @@
 services:
+  api:
+    build: .
+    container_name: fastapi_mediasoft_test_task
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+    restart: always
+    depends_on:
+      - db
+
   db:
     image: postgres:latest
     container_name: postgres_mediasoft_test_task
@@ -8,7 +26,7 @@ services:
       POSTGRES_DB: mediasoft_shops
       PGDATA: /var/lib/postgresql/data/mediasoft_shops
     ports:
-      - "5433:5432"
+      - 5432:5432
     volumes:
       - mediasoft_shops:/var/lib/postgresql/data/mediasoft_shops
       - ./db/:/docker-entrypoint-initdb.d/
@@ -34,7 +52,5 @@ services:
       timeout: 10s
       retries: 5
     restart: always
-    tty: true
-    stdin_open: true
 volumes:
   mediasoft_shops:

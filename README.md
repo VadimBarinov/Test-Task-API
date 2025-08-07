@@ -393,8 +393,8 @@ docker-compose up
 - Database : mediasoft_shops
 - User : admin
 - Password : qwerty1234
-- Host : localhost
-- Port : 5433
+- Host : db (также есть проброс на localhost:5432)
+- Port : 5432
 
 ---
 
